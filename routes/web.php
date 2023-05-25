@@ -19,6 +19,25 @@ use App\Models\Product;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('createstaffphoto/{id}/{path}', function ($id, $path) {
+
+Route::get('/staff/{id}/photos/create/{path}', function ($id, $path) {
     Staff::find($id)->photos()->create(['path' => $path]);
+    return redirect('/staff/' . $id . '/photos/read/all');
+});
+
+Route::get('/product/{id}/photos/create/{path}', function ($id, $path) {
+    Product::find($id)->photos()->create(['path' => $path]);
+    return redirect('/product/' . $id . '/photos/read/all');
+});
+
+Route::get('/staff/{id}/photos/read/all', function ($id) {
+    foreach (Staff::find($id)->photos as $photo) {
+        echo '<br>Id: ' . $photo->id . ', Path: ' . $photo->path . ';';
+    };
+});
+
+Route::get('/product/{id}/photos/read/all', function ($id) {
+    foreach (Product::find($id)->photos as $photo) {
+        echo '<br>Id: ' . $photo->id . ', Path: ' . $photo->path . ';';
+    };
 });
