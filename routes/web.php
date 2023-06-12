@@ -25,3 +25,11 @@ Route::get('/product/{id}/photos/create/{path}', [PhotoController::class, 'creat
 Route::get('/staff/{id}/photos/read/all', [PhotoController::class, 'readStaffPhoto']);
 
 Route::get('/product/{id}/photos/read/all', [PhotoController::class, 'readProductPhoto']);
+
+Route::get('/staff/{id}/photos/update/{idPhoto}/{path}', [PhotoController::class, 'updateStaffPhoto']);
+
+Route::get('/product/{id}/photos/update/{idPhoto}/{path}', [PhotoController::class, 'updateProductPhoto']);
+
+Route::get('/staff/{id}/photos/delete/{idPhoto}', [PhotoController::class, 'deleteStaffPhoto']);
+
+Route::get('/product/{id}/photos/delete/{idPhoto}', [PhotoController::class, 'deleteProductPhoto']);

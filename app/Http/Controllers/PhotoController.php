@@ -34,4 +34,29 @@ class PhotoController extends Controller
             echo '<br>Id: ' . $photo->id . ', Path: ' . $photo->path . ';';
         };
     }
+
+    public function updateStaffPhoto(Request $request)
+    {
+        Staff::findOrFail($request->id)->photos()->findOrFail($request->idPhoto)->update(['path' => $request->path]);
+        return redirect('/staff/' . $request->id . '/photos/read/all');
+    }
+
+    public function updateProductPhoto(Request $request)
+    {
+        Product::findOrFail($request->id)->photos()->findOrFail($request->idPhoto)->update(['path' => $request->path]);
+        return redirect('/product/' . $request->id . '/photos/read/all');
+    }
+
+    public function deleteStaffPhoto(Request $request)
+    {
+        Staff::findOrFail($request->id)->photos()->findOrFail($request->idPhoto)->delete();
+        return redirect('/staff/' . $request->id . '/photos/read/all');
+    }
+
+    public function deleteProductPhoto(Request $request)
+    {
+        Product::findOrFail($request->id)->photos()->findOrFail($request->idPhoto)->delete();
+        return redirect('/product/' . $request->id . '/photos/read/all');
+    }
+
 }
